@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 const authRoutes = require('./routes/authRoutes');
+const streamsRoutes = require('./routes/streamRoutes');
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/streams', streamsRoutes);
 // Route for testing
 app.get('/', (req, res) => {
   res.send('You entered in the BUNKER');

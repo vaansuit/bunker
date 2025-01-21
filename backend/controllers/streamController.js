@@ -90,3 +90,17 @@ exports.getVideos = async (req, res) => {
         res.status(500).json({ message: "Error in fetching videos: ", error: error.message});
     }
 }
+
+exports.viewStream = async (req, res) => {
+   try {
+    const stream = {
+        title: 'My mocked live',
+        description: 'Damn son',
+        streamUrl: 'www.mymockedlive.com',
+    }
+
+    res.status(200).json({ message: 'Fetched view stream ', stream})
+   } catch (error) {
+    res.status(500).json({ message: 'Error loading view stream', error: error.message});
+   }
+}
