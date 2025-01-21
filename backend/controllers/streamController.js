@@ -55,3 +55,16 @@ exports.liveDashboard = async(req, res) => {
         res.status(500).json({ message: 'Something went wrong fetching dashboard data', error: error.message});
     }
 };
+
+exports.streamerHomePage = async(req, res) => {
+    try {
+        const videos = await prisma.video.findMany({
+            where: {
+                userId: req.user.id
+            },
+        })
+    res.status(200).json({ message: "Streamer home page loaded"});
+    } catch (error) {
+        res.status(500).json({ message: "Error in loading home page: ", error: error.message});
+    }
+};
