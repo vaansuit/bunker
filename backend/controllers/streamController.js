@@ -68,3 +68,16 @@ exports.streamerHomePage = async(req, res) => {
         res.status(500).json({ message: "Error in loading home page: ", error: error.message});
     }
 };
+
+exports.viewerHomePage = async (req, res) => {
+    try {
+        const trendingVideos = await prisma.video.findMany({
+            take: 10,
+        });
+
+        res.status(200).json({ message: "Viewer home page loaded!"})
+    } catch (error) {
+        res.status(500).json({ message: "Error in loading viewer home page: ", error: error.message });
+    }
+};
+
