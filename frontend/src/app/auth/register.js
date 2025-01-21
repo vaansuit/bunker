@@ -84,7 +84,7 @@ const Register = () => {
                         <input 
                         type="text"
                         id="email"
-                        name="email"
+                        name="emaisl"
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full border rounded px-3 py-2"
