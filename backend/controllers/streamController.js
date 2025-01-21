@@ -63,7 +63,7 @@ exports.streamerHomePage = async(req, res) => {
                 userId: req.user.id
             },
         })
-    res.status(200).json({ message: "Streamer home page loaded"});
+    res.status(200).json({ message: "Streamer home page loaded", videos});
     } catch (error) {
         res.status(500).json({ message: "Error in loading home page: ", error: error.message});
     }
@@ -75,9 +75,18 @@ exports.viewerHomePage = async (req, res) => {
             take: 10,
         });
 
-        res.status(200).json({ message: "Viewer home page loaded!"})
+        res.status(200).json({ message: "Viewer home page loaded!", trendingVideos})
     } catch (error) {
         res.status(500).json({ message: "Error in loading viewer home page: ", error: error.message });
     }
 };
 
+exports.getVideos = async (req, res) => {
+    try {
+        const videos = await prisma.video.findMany();
+
+        rest.status(200).json({ message: "Videos fetched successfully!", videos});
+    } catch (error) {
+        res.status(500).json({ message: "Error in fetching videos: ", error: error.message});
+    }
+}
