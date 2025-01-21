@@ -20,6 +20,38 @@ exports.uploadVideo = async (req, res) => {
 
         res.status(201).json({ message: "Video uploaded successfully!", video });
     } catch (error) {
-        res.status(500).json({ message: "Something went wrong when uploading video! error: ", error: error.message})
+        res.status(500).json({ message: "Something went wrong when uploading video! error: ", error: error.message });
+    }
+
+
+}
+
+exports.getAnalytics = async (req, res) => {
+    try {
+        //mocked response
+        const analytics = {
+            totalViews: 1500,
+            totalVideos: 10,
+            totalComments: 45,
+        }
+
+        res.status(200).json({ message: 'Analytics fetched successfully', analytics});      
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong fetching analytics: ", error: error.message});
     }
 }
+
+exports.liveDashboard = async(req, res) => {
+    try {
+        //mocked
+        const liveData = {
+            isStreaming: true,
+            currentViewers: 42,
+            streamKey: 'streamer-12345'
+        }
+
+        res.status(200).json({ message: 'Dashboard data fetched successfully', liveData })
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong fetching dashboard data', error: error.message});
+    }
+};
